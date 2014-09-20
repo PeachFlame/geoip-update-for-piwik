@@ -43,6 +43,12 @@ PATH_TO_PIWIK="/var/www/piwik"
 echo "Beginning script run:"
 echo "---------------------"
 cd $PATH_TO_PIWIK/misc
+if [ $? -eq 0 ]; then
+  echo "Successfully changed to Piwik directory."
+else
+  echo "Problem changing to Piwik directory... exiting!"
+  exit 1
+fi
 
 rm -rf GeoIPCity.dat
 if [ $? -eq 0 ]; then
