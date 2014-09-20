@@ -11,11 +11,27 @@ This script will remove the old city database file, download the latest version 
 
 The end result of this script is that you now have monthly updates of city locales for Piwik, with no manual maintenance intervention required.
 
-## Installation instructions:
-1. Grab the bash script:
+## Installation instructions (command line):
+1. Grab the bash script. Recommended that you place it in the 'misc' folder of your Piwik installation (ex: /path/to/piwik/misc/)
+```Shell
+cd /path/to/piwik/misc/
+wget --no-check-certificate https://raw.githubusercontent.com/PeachFlame/geoip-update-for-piwik/master/update-geoip.sh
+```
+2. Customize the script by setting the path to your Piwik installation: "PATH_TO_PIWIK"
+3. Add in a cron job to run the script monthly. Example:
+```Shell
+25 2 9 * * /bin/sh /path/to/piwik/misc/update-geoip.sh
+```
 
-https://raw.githubusercontent.com/PeachFlame/geoip-update-for-piwik/master/update-geoip.sh
-
+## Installation instructions (FTP):
+Alternatively, if you don't have command line access, or you are uncomfortable with SSH, you can simply FTP upload the file.
+1. Download the *update-geoip.sh* script from this GitHub repo
+2. Edit the file, changing the path to your Piwik installation: "PATH_TO_PIWIK"
+3. FTP upload it to your Piwik server. Recommended that you place it in the 'misc' folder of your Piwik installation (ex: /path/to/piwik/misc/)
+4. Add in a cron job to run the script monthly. Example:
+```Shell
+25 2 9 * * /bin/sh /path/to/piwik/misc/update-geoip.sh
+```
 
 ## Note:
 1. This script can be run by a regular, non-privileged, user. This is ideal for a shared hosting environment where the user does not have root access to install via yum/apt. If you _do_ have root access, you may want to consider using MaxMind's official program instead: https://github.com/maxmind/geoipupdate
