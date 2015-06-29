@@ -35,8 +35,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# This is the only variable that the user needs to set; it's the path to your Piwik installation folder:
+# These are the only variables that the user needs to set:
+#
+## The path to your Piwik installation folder:
 PATH_TO_PIWIK="/var/www/piwik"
+# The path to the Gunzip binary on your server. To find that out, run "which gunzip"
+PATH_TO_GUNZIP="/usr/bin/gunzip"
 
 
 # You /shouldn't/ need to modify any below. Just implement the monthly cron job.
@@ -72,7 +76,7 @@ fi
 echo "---------------------"
 echo "Unpacking the new GeoIP database file:"
 
-/usr/bin/gunzip GeoLiteCity.dat.gz
+$PATH_TO_GUNZIP GeoLiteCity.dat.gz
 if [ $? -eq 0 ]; then
   echo "Successfully unpacked new GeoIP database file."
 else
